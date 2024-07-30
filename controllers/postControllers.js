@@ -108,3 +108,10 @@ export const getSlug = async (req, res) => {
       res.status(500).json({ message: 'Server error' });
     }
   };
+
+export const deneme = async (req,res) => {
+
+    res.status(200).json({
+        success: "deneme"
+    })
+}
