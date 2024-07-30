@@ -11,6 +11,7 @@ const Contact = () => {
   const [token, setToken] = useState("")
 
   const key ='6LdvRBMqAAAAADVY0-mK7-sv_RXI7Xm1zobxdThB'
+  const BASE_URL = 'https://blog-api-delta-ten.vercel.app'
 
   const onChangeRecapthca = (recaptchaToken) => {
     setToken(recaptchaToken)
@@ -20,7 +21,7 @@ const Contact = () => {
     try {
       if (token && name && email && message) {
         console.log('Send post request');
-        await axios.post('http://localhost:3000/api/auth/contact', { name, email, message, token })
+        await axios.post(`${BASE_URL}/api/auth/contact`, { name, email, message, token })
         setToken("")
         recaptchaRef.current.reset()
       } else {

@@ -8,11 +8,13 @@ const initialState = {
   error: null,
 };
 
+const BASE_URL = 'https://blog-api-delta-ten.vercel.app'
+
 export const getAllPosts = createAsyncThunk(
   'posts/getAllPosts',
   async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/posts');
+      const response = await axios.get(`${BASE_URL}/api/posts`);
       return response.data;
     } catch (error) {
       throw new Error('Posts not found');
@@ -24,7 +26,7 @@ export const getHomePosts = createAsyncThunk(
   'posts/getHomePosts',
   async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/posts/all');
+      const response = await axios.get(`${BASE_URL}/api/posts/all`);
       return response.data;
     } catch (error) {
       throw new Error('Posts not found');
@@ -36,7 +38,7 @@ export const detailPost = createAsyncThunk(
   'posts/getDetail',
   async (slug) => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/posts/${slug}`);
+      const response = await axios.get(`${BASE_URL}/api/posts/${slug}`);
       return (response.data);
     } catch (error) {
       throw new Error('Post not found');
@@ -48,7 +50,7 @@ export const createPost = createAsyncThunk(
   'dashboard/create',
   async (post) => {
     try {
-      const response = await axios.post("http://localhost:3000/api/posts/", post, {
+      const response = await axios.post(`${BASE_URL}/api/posts/`, post, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -70,7 +72,7 @@ export const updatePost = createAsyncThunk(
   'dashboard/update',
   async ({ slug, post }) => {
     try {
-      const response = await axios.put(`http://localhost:3000/api/posts/${slug}`, post, {
+      const response = await axios.put(`${BASE_URL}/api/posts/${slug}`, post, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -92,7 +94,7 @@ export const deletePost = createAsyncThunk(
   'dashboard/delete',
   async (id) => {
     try {
-      const response = await axios.delete(`http://localhost:3000/api/posts/${id}`, {
+      const response = await axios.delete(`${BASE_URL}/api/posts/${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
