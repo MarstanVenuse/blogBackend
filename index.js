@@ -21,6 +21,9 @@ app.use('/api/auth', userRoutes)
 
 const port = process.env.PORT || 3001
 
+app.get('/', (req,res) => {
+    res.send('hello api')
+})
 
 app.listen(port, () => {
     console.log(`Server is started on ${port} port`);
